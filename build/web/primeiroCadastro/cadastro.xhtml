@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Cadastro de Usuario</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/bootstrap-min.css"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/style.css"/>
+        <script type="text/javascript" src="#{request.contextPath}/js/bootstrap.js"></script>
+        <h:outputStylesheet library="awesome" name="css/font-awesome.css" />
+    </h:head>
+    <h:body>
+        <ui:include src="../menu_principal.xhtml" />
+        <p:growl id="messages"/> 
+        <p:ajaxStatus onstart="PF('statusDialog').show();" onsuccess="PF('statusDialog').hide();" />
+        <p:dialog modal="true" widgetVar="statusDialog" draggable="false" closable="false">
+            <p:graphicImage value="#{request.contextPath}/imagensSistema/carregando.gif"/>
+        </p:dialog>
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <h:form id="primCad">
+                        <ui:include src="includes/dadosUsuario.xhtml" />
+                        <div class="mb20"></div>
+                        <ui:include src="includes/dadosPessoais.xhtml" />
+                        <div class="mb20"></div>
+                        <ui:include src="includes/dadosEndereco.xhtml" />
+                        <div class="mb20"></div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+
+        <ui:include src="../footer.xhtml" />
+    </h:body>
+</html>

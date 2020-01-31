@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="centro">
+
+        <p:layoutUnit position="center" header="Situação Compras" styleClass="layoutUnitHorus" resizable="true" closable="false" collapsible="false">
+            <p:panelGrid  columns="1" layout="grid" styleClass="paneGridHorus" >
+                <h:form id="formGridProduto">
+                    <p:dataTable id="gridProduto" 
+                                 reflow="true"
+                                 value="#{controleVenda.comprasUsuario()}" var="compras"  
+                                 paginator="true" rows="10" 
+                                 paginatorPosition="bottom" 
+                                 styleClass="dataTableHorus"
+                                 emptyMessage="Nenhum valor encontrado">
+                        <f:facet name="header">
+                            <h:outputText value="Listando Compra(s)"/>
+                        </f:facet>
+                        <p:column>
+                            <f:facet name="header">PROTOCOLO</f:facet> 
+                            #{compras.protocolo}
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">DATA</f:facet>
+                            <h:outputText value="#{compras.dataVenda}">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>                                 
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">VALOR R$</f:facet>
+                            R$ <h:outputText value="#{compras.valorTotal}" >
+                                <f:convertNumber pattern="#0.00"/>
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">STATUS</f:facet>
+                                <h:outputText value="#{compras.statusVenda.nome}"/>                            
+                        </p:column>                      
+                    </p:dataTable>
+                </h:form>
+            </p:panelGrid>
+        </p:layoutUnit>
+    </ui:define>
+</ui:composition>

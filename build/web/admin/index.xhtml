@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ph="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Área do Administrador</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/bootstrap-min.css"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/style.css"/>
+        <script type="text/javascript" src="#{request.contextPath}/js/bootstrap.js"></script>
+        <script src="#{request.contextPath}/js/jquery-1.10.2.js"></script>
+
+    </h:head>
+    <h:body styleClass="remove_admin">
+        <ui:include src="../menu_principal.xhtml" />
+
+        <c:if test="#{param.msg != null}">
+            <script type="text/javascript">
+                alert('#{param.msg}');
+            </script>
+        </c:if>
+        <div style="width:400px; margin: 30px auto;">
+              <h1>Área do Administrador</h1>
+            <h:form id="fomEnviar" class="form-horizontal text-justify" role="form">
+                <div class="form-group">                
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                            <h:inputText class="form-control" id="usuarioUser" ph:placeholder="Usuario"  ph:autofocus="true" value="#{controleUsuario.usuario.email}"/>
+                        </div>
+                    </div>
+                </div>           
+                <div class="form-group ">                  
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1"><span class="glyphicon  glyphicon-lock" aria-hidden="true"></span></span>
+                            <h:inputSecret class="form-control" id="senhaUser" ph:placeholder="Senha" value="#{controleUsuario.usuario.senha}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <h:commandButton  class="btn btn-block btn-lg btn-success"  value="Entrar" action="#{controleUsuario.altenticarAdmin()}"/>
+                    </div>
+                </div>
+            </h:form>
+            <!--<a  class="btn btn-primary" href="primeiroCadastro/cadastro.faces">Criar Usuario</a>-->
+        </div>
+
+        <ui:include src="../footer.xhtml" />
+    </h:body>
+</html>

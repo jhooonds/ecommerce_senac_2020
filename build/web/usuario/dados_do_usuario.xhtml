@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="centro">
+        <p:layoutUnit position="center" header="Dados Pessoais" resizable="true" closable="false" collapsible="false">
+            <div class="container-fluid dadosUser">
+                <div class="container">
+                    <div class="row">
+                        <h:form id="dadosPessoaisUser">
+                            <ui:include src="includes/dadosPessoais.xhtml" />
+                            <div class="mb20"></div>
+                            <ui:include src="includes/dadosEndereco.xhtml" />
+                            <div class="mb20"></div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </p:layoutUnit>
+    </ui:define>
+</ui:composition>
+

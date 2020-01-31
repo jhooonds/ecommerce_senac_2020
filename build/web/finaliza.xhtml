@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Finalizar venda</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/bootstrap-min.css"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/style.css"/>
+        <script type="text/javascript" src="#{request.contextPath}/js/bootstrap.js"></script>
+        <h:outputStylesheet library="awesome" name="css/font-awesome.css" />
+    </h:head>
+    <h:body>
+        <ui:include src="menu_principal.xhtml" />
+        <p:growl id="messages"/> 
+        <p:ajaxStatus onstart="PF('statusDialog').show();" onsuccess="PF('statusDialog').hide();" />
+        <p:dialog modal="true" widgetVar="statusDialog" draggable="false" closable="false">
+            <p:graphicImage value="imagensSistema/carregando.gif"/>
+        </p:dialog>
+        <div class="container-fluid painelUser">
+            <div class="container">
+                <h:form prependId="false">
+                    <p:dataTable id="gridCarrinho" value="#{controleProdutos.listarCarrinho()}" var="carrinho" 
+                                 paginatorPosition="bottom" 
+                                 styleClass="dataTableHorus"
+                                 paginator="true" rows="15"
+                                  emptyMessage="Carrinho vazio">
+                        <p:column width="100">
+                            <f:facet name="header">Codigo</f:facet>
+                                #{carrinho.codigo}
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Nome</f:facet>
+                                #{carrinho.nome}
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Quantidade</f:facet>
+                            <p:commandButton title="Retirar produto" ajax="true" actionListener="#{controleProdutos.removeProdutoCarrinho(carrinho.codigo, carrinho.quantidade)}" icon="fa fa-minus" update="gridCarrinho :messages"/>
+                            <h:inputText value="#{carrinho.quantidade}" size="2" />
+                            <p:commandButton title="Adicionar Produto" ajax="true" actionListener="#{controleProdutos.addMiasProduto(carrinho.codigo, carrinho.quantidade)}" icon="fa fa-plus" update="gridCarrinho :messages"/>
+                        </p:column>                   
+                        <p:column width="180">
+                            <f:facet name="header">Valor </f:facet>
+                            R$ <h:outputText value="#{carrinho.valorVenda}" >
+                                <f:convertNumber pattern="#0.00"/>
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Marca</f:facet>
+                                #{carrinho.marca.nome}
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                <h:form id="forAcoes" rendered="#{param.cmd == '6974f237ed3f06b22c850d2673a5d477'}">
+                    <h:panelGrid  columns="2">
+                        Valor total  R$ <h:outputText value="#{controleProdutos.somaValorCarrinho()}" >
+                            <f:convertNumber pattern="#0.00"/>
+                        </h:outputText>
+                    </h:panelGrid>
+                    <h:panelGrid columns="1" >
+                        Endereço de entrega
+                        #{controleCliente.pesquisaDadosPessoaisFenalizaVenda().endereco.rua} Nº #{controleCliente.pesquisaDadosPessoaisFenalizaVenda().endereco.numero}, CEP #{controleCliente. pesquisaDadosPessoaisFenalizaVenda().endereco.cep}, #{controleCliente. pesquisaDadosPessoaisFenalizaVenda().endereco.bairro}, #{controleCliente. pesquisaDadosPessoaisFenalizaVenda().endereco.cidade}, #{controleCliente. pesquisaDadosPessoaisFenalizaVenda().endereco.estado}
+                    </h:panelGrid>
+                    <h:panelGrid columns="2">  
+                        <p:commandButton styleClass="buttonProd btn btn-info" value="Cartão" icon="fa fa-credit-card"  oncomplete="ativaCampoCartao();" actionListener="#{controleVenda.ativaCampoNumCartao()}" ajax="true"/>
+                        <p:commandButton  styleClass="buttonProd btn btn-info" icon="fa fa-barcode" value="Boleto" actionListener="#{controleVenda.salvarVendaBoleto(controleCliente.pesquisaDadosPessoaisFenalizaVenda(),controleProdutos.listarCarrinho())}" ajax="false" >
+                            <p:fileDownload value="#{controleVenda.file}"/>
+                            <p:ajax event="click" delay="2000" oncomplete="#{controleProdutos.setLimpaCarrinho('limpaCarrinho')}"  update=":menuPrincipal:btnCarrinho :gridCarrinho"/>
+                        </p:commandButton>                      
+                        <script type="text/javascript">
+                            function ativaCampoCartao() {
+                                $('#campoCartao').css('display', 'block');
+                            }
+                        </script>
+                    </h:panelGrid>
+                    <div id="campoCartao" style="display: none" > 
+                        <h:outputText value="Numero do cartão"/>
+                        <p:inputMask  value="#{controleVenda.venda.numeroBoletoCartao}" mask="9999 9999 9999 9999"/>
+                        <p:commandButton styleClass="buttonProd btn btn-info" value="Concluir Compra" icon="fa fa-credit-card" action="#{controleVenda.salvarVendaCartao(controleCliente.pesquisaDadosPessoaisFenalizaVenda(),controleProdutos.listarCarrinho())}" ajax="false" />
+                    </div>                    
+                </h:form>                
+            </div>
+        </div>
+        <ui:include src="footer.xhtml"/>
+    </h:body>
+</html>

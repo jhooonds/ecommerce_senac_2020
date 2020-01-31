@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:form id="formCadMarca" styleClass="fomHorus marcas">
+        <h:panelGrid columns="2">
+            <h:panelGrid id="pcadmarca" columns="2">
+                <p:outputLabel for="nomeMarca" value="Nome : "/>
+                <p:inputText value="#{controleMarca.marca.nome}" id="nomeMarca"/>
+                <p:outputLabel for="ativoMarca" value="Marca Ativa ?"/>
+                <p:selectOneRadio id="ativoMarca" value="#{controleMarca.marca.ativoString}" required="true" requiredMessage="Marque um opção!!">
+                    <f:selectItem itemLabel="Sim" itemValue="sim"/>
+                    <f:selectItem itemLabel="Não" itemValue="nao"/>
+                </p:selectOneRadio>
+                <p:outputLabel for="descricaoMarca" value="Descrição : "/>
+                <p:inputTextarea id="descricaoMarca" value="#{controleMarca.marca.descricao}" rows="6" cols="23" />
+                <h:outputText/>
+                <p:commandButton styleClass="btn btn-success" icon="fa fa-save" value="salvar" actionListener="#{controleMarca.salvar()}" ajax="true" update=":messages"/>
+            </h:panelGrid>  
+        </h:panelGrid>
+    </h:form>
+
+    <p:dialog header="Lista de Marcas" widgetVar="dlgMarca" modal="true" appendTo="@(body)">
+        <h:form id="formGridMarca">
+            <p:dataTable id="gridMarca" value="#{controleMarca.modelMarca}"
+                         var="marca" paginator="true" rows="7" 
+                         paginatorPosition="bottom" 
+                         styleClass="dataTableHorus marcas"
+                         reflow="true"
+                         emptyMessage="Nenhum valor encontrado" >
+                <p:column width="100">
+                    <f:facet name="header">Codigo</f:facet>
+                        #{marca.codigo}
+                </p:column>
+                <p:column>
+                    <f:facet name="header">Nome</f:facet>
+                        #{marca.nome}
+                </p:column>
+                <p:column width="100">
+                    <f:facet name="header">Ativo</f:facet>
+                        #{marca.ativoString}
+                </p:column>
+                <p:column width="100"> 
+                    <f:facet name="header">Editar</f:facet>
+                    <p:commandButton title="Editar marcas selecionada" icon="fa fa-edit" styleClass="btn btn-success" actionListener="#{controleMarca.alterarMarca()}" ajax="false" update=":formCadMarca:pcadmarca" oncomplete="PF('dlgMarca').hide();"/>      
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </p:dialog>
+</ui:composition>
+

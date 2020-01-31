@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"               
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:fieldset id="endereco" legend="Dados do Endereço" styleClass="cadastro">
+        <p:panelGrid id="cadDadosEndereco" layout="grid" columns="2">
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel value="CEP : " for="cepCli" styleClass="labelHorus" />
+                    <p:inputMask mask="99999-999" 
+                                 id="cepCli" value="#{controleCliente.endereco.cep}" styleClass="form-control"/>
+                </div>
+            </p:column>
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel value=" "/>
+                    <br/>
+                    <p:commandButton title="Pesquisar endereço" action="#{controleCliente.pesquisaCep()}"
+                                     styleClass="btn btn-success" icon="fa fa-search"
+                                     process="@this, cepCli" update="logCli,bairroCli,cidadeCli,estadoCli" />
+                </div>
+            </p:column>
+
+
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel value="Logradouro : " for="logCli" styleClass="labelHorus"/>
+                    <p:inputText value="#{controleCliente.endereco.rua}" id="logCli" disabled="true" styleClass="form-control"/>
+                </div>
+            </p:column>
+
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel value="N° : " for="nCli" styleClass="labelHorus"/>
+                    <p:inputText value="#{controleCliente.endereco.numero}" id="nCli" size="1" styleClass="form-control"/>
+                </div>
+            </p:column>
+
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel value="Bairro : " for="bairroCli" styleClass="labelHorus"/>
+                    <p:inputText value="#{controleCliente.endereco.bairro}" id="bairroCli" disabled="true" styleClass="form-control"/>
+                </div>
+            </p:column>
+
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel value="Cidade : " for="cidadeCli" styleClass="labelHorus"/>
+                    <p:inputText value="#{controleCliente.endereco.cidade}" id="cidadeCli" disabled="true" styleClass="form-control"/>
+                </div>
+            </p:column>
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel value="Estado : " for="estadoCli" styleClass="labelHorus"/>
+                    <p:inputText value="#{controleCliente.endereco.estado}" id="estadoCli" disabled="true" size="1" styleClass="form-control"/>
+                </div>
+            </p:column>
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel value="Complemento : " for="compleCli" styleClass="labelHorus" />
+                    <p:inputText value="#{controleCliente.endereco.complemento}" id="compleCli" styleClass="form-control"/>
+                </div>
+            </p:column>
+        </p:panelGrid>
+        <div class="radio form-group">
+            <p:commandButton value="Salvar" styleClass="btn btn-success" action="#{controleCliente.salvar()}" ajax="false" icon="fa fa-save"/>
+        </div>
+    </p:fieldset>
+</ui:composition>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Area do usuario</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/bootstrap-min.css"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/style.css"/>
+        <script type="text/javascript" src="#{request.contextPath}/js/bootstrap.js"></script>
+        <h:outputStylesheet library="awesome" name="css/font-awesome.css" />        
+    </h:head>
+
+    <h:body styleClass="painelUser">
+        <ui:include src="../menu_principal.xhtml" />
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <p:layout fullPage="false"  >
+                        <p:growl id="messages"/> 
+                        <p:ajaxStatus onstart="PF('statusDialog').show();" onsuccess="PF('statusDialog').hide();" />
+                        <p:dialog modal="true" widgetVar="statusDialog" draggable="false" closable="false">
+                            <p:graphicImage value="#{request.contextPath}/imagensSistema/carregando.gif"/>
+                        </p:dialog>
+                        <p:layoutUnit position="west" size="150" styleClass="menulateral" header="Menu" resizable="true" closable="false" collapsible="false">
+                            <h:form id="formPag">                       
+                                <p:menu style="width: 140px;">
+                                    <p:menuitem icon="fa fa-user" value="Dados Pessoais" action="#{controleCliente.pesquisaDadosUsuarioLogado()}" ajax="false"/>
+                                    <p:menuitem value="Dados usuario" action="#{controleUsuario.pesqUsuarioAltera()}"  ajax="false" icon="fa fa-cogs"/>
+                                    <p:menuitem icon="fa fa-th-list" value="Lista compras" url="situacao_produtos_comprados.faces" ajax="false" />
+                                </p:menu>
+                            </h:form>
+                        </p:layoutUnit>
+                        <ui:insert name="centro">
+                            <p:layoutUnit position="center" header="HOME" resizable="true" closable="false" collapsible="false">
+
+                            </p:layoutUnit>
+                        </ui:insert>
+
+                    </p:layout>
+                </div>
+            </div>
+        </div>
+        <ui:include src="../footer.xhtml" />
+    </h:body>
+</html>

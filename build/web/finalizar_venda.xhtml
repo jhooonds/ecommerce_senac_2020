@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <div class="container" >
+        <div class="row" >
+            <h:panelGrid  columns="2">
+                Valor total  R$ <h:outputText value="#{controleProdutos.somaValorCarrinho()}" >
+                    <f:convertNumber pattern="#0.00"/>
+                </h:outputText>
+            </h:panelGrid>
+            <h:panelGrid columns="1" rendered="#{param.cmd == '6974f237ed3f06b22c850d2673a5d477'}">
+                Endereço de entrega
+                #{controleCliente.pesquisaDadosPessoaisFenalizaVenda().endereco.rua} Nº #{controleCliente.pesquisaDadosPessoaisFenalizaVenda().endereco.numero}, CEP #{controleCliente. pesquisaDadosPessoaisFenalizaVenda().endereco.cep}, #{controleCliente. pesquisaDadosPessoaisFenalizaVenda().endereco.bairro}, #{controleCliente. pesquisaDadosPessoaisFenalizaVenda().endereco.cidade}, #{controleCliente. pesquisaDadosPessoaisFenalizaVenda().endereco.estado}
+            </h:panelGrid>
+            <h:panelGrid columns="2">  
+                <p:commandButton styleClass="buttonProd btn btn-info" value="Cartão" icon="fa fa-credit-card" action="#{controleVenda.salvarVendaCartao(controleCliente.pesquisaDadosPessoaisFenalizaVenda(),controleProdutos.listarCarrinho())}" ajax="false" process="@this"/>
+                <p:commandButton  styleClass="buttonProd btn btn-info" icon="fa fa-barcode" value="Boleto"  action="#{controleVenda.salvarVendaBoleto(controleCliente.pesquisaDadosPessoaisFenalizaVenda(),controleProdutos.listarCarrinho())}" ajax="false" />
+            </h:panelGrid>
+
+        </div>
+    </div>
+</ui:composition>

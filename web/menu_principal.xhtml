@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <div class="navbar navbar-default navbar-static-top" style="">
+        <style>
+            .body{padding-top:70px}
+        </style>
+        <div class="container">
+            <h:form id="menuPrincipal">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand navbar-left" href="#{request.contextPath}">
+                        E-commerce 
+                        <img src="#{request.contextPath}/imagensSistema/brand.png" class="center-block img-responsive"
+                             style="width:50px;height:50px; margin:-35px 0px 0px 180px;"/>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <!--class="active"-->
+                        <li >
+                            <a href="#{request.contextPath}">Home</a>
+                        </li>
+
+                        <c:if var="log" test="#{controleUsuario.userLogado.nome != null and controleUsuario.userLogado.usuario.tpUsuario != 'admin'}">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">#{controleUsuario.userLogado.usuario.email} <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li> 
+                                        <a href="#{request.contextPath}/usuario/situacao_produtos_comprados.faces">
+                                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Painel do Usuário
+                                        </a>
+                                    </li>
+                                    
+                                    <li role="separator" class="divider"></li>
+
+                                    <li>
+                                        <h:commandLink action="#{controleUsuario.logoutUsuario()}" >
+                                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Sair
+                                        </h:commandLink>
+                                    </li>
+                                </ul>
+                            </li>                           
+                        </c:if>
+
+                        <c:if var="log" test="#{controleUsuario.userLogado.nome ==null }">
+                            <li>
+                                <h:commandLink action="#{controleUsuario.redirecionaPaginaLogin()}"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Logar</h:commandLink >
+                            </li>
+                        </c:if>
+                        <li>                           
+                        <h:commandLink action="venda.faces" id="btnCarrinho" class="buttonProd btn btn-warning" ><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Carrinho <span class="badge">#{controleProdutos.quantidadeItensCarrinho()}</span></h:commandLink>
+                        </li>
+                    </ul>
+                </div>
+            </h:form>
+        </div>
+    </div>   
+</ui:composition>

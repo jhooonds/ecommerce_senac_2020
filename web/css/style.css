@@ -1,0 +1,421 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29/11/2015, 00:56:00
+    Author     : Gustavo
+*/
+
+.show{
+    display: block;
+}
+.hide{
+    display: none;
+}
+form.listaProdutoHome {
+    margin-top: 10px;
+}
+.listaProdutoHome .verifica4:nth-child(4){
+    clear: none !important;
+}
+.listaProdutoHome .verifica4:nth-child(4n+1){
+    clear: both;
+}
+.listaProdutoHome .verifica4 {
+    margin-bottom: 50px;
+}
+.listaProdutoHome .verifica4 img {
+    border: 0 none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    max-height: 160px;
+}
+.vejamais > a {
+    background-color: green;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1em;
+    padding: 4px 15px;
+    text-transform: lowercase;
+}
+.vejamais {
+    margin-top: 12px;
+}
+.precoProduto {
+    color: red;
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1em;
+    margin-top: 12px;
+}
+.imagemProduto {
+    height: 170px;
+}
+.divFooter {
+    padding: 10px 0;
+    text-align: center;
+}
+.mb20{
+    margin-bottom: 20px;
+}
+.addProd {
+    margin-top: 20px;
+}
+.nomeProd {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1em;
+    padding: 7px 0;
+    text-transform: capitalize;
+}
+
+.form-control {
+    box-shadow: 0 0 0 0 !important;
+}
+
+.cadastro .ui-panelgrid-cell.ui-grid-col-6 {
+    border: 0 none !important;
+}
+.cadastro .ui-grid-row {
+    border: 0 none !important;
+    padding: 0 !important;
+}
+.cadastro .ui-panelgrid-content.ui-widget-content.ui-grid.ui-grid-responsive {
+    border: 0 none !important;
+}
+.radio.form-group label.labelHorus {
+    margin-left: 0 !important;
+    padding-left: 0;
+}
+.radio.form-group table {
+    border: 0 none;
+}
+
+.radio.form-group label + span {
+    border: 0 none;
+    border-radius: 0;
+    margin: 0 !important;
+    padding: 0;
+}
+.radio.form-group .hasDatepicker ,input{
+    box-shadow: 0 0 0 0 !important;
+}
+.radio.form-group .btn-success {
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 3px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    box-shadow: 0 0 0 0 !important;
+    color: #fff;
+}
+.radio.form-group .btn-success span{
+    text-shadow: 0 0 0 !important;
+    color: #fff;
+}
+.radio.form-group .btn-success:hover,.radio.form-group .btn-success:focus, 
+.radio.form-group .btn-success:active, .radio.form-group .btn-success.active, 
+.radio.form-group .open > .dropdown-toggle.btn-success {
+    background-color: #449d44;
+    border-color: #398439;
+    color: #fff;
+}
+
+fieldset.cadastro legend {
+    background: transparent !important;
+    border-radius: 0 !important;
+    font-size: 20px;
+    font-weight: 300;
+    margin-bottom: 0 !important;
+    padding-bottom: 10px !important;
+    padding-top: 10px !important;
+    width: 260px;
+}
+.buttonProd.btn.btn-info{
+    box-shadow: 0 0 0 0  !important;
+    color: #fff !important;
+}
+
+.buttonProd.btn.btn-warning{
+    box-shadow: 0 0 0 0  !important;
+    color: #fff !important;
+}
+.buttonProd.btn-warning:hover,.buttonProd.btn-warning:focus{
+    background-color: #ec971f !important;
+    border-color: #d58512 !important;
+    color: #fff !important;
+}
+.remove_admin .collapse.navbar-collapse.navbar-ex1-collapse {
+    display: none !important;
+}
+.painelUser footer.footer {
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+}
+body.painelUser {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+}
+
+body.painelUser .ui-layout-container {
+    height: 100%;
+    position: absolute;
+    width: 1180px;
+}
+.painelUser .menulateral {
+    border-radius: 0;
+    border: 0 !important;
+}
+.painelUser .menulateral + .layoutUnitHorus {
+    max-width: calc(100% - 150px) !important;
+    width: calc(100% - 150px) !important;
+}
+
+.painelUser .ui-layout-unit.ui-widget.ui-widget-content.ui-corner-all.ui-layout-center.ui-layout-pane.ui-layout-pane-center {
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+.painelUser .ui-layout-unit-header.ui-widget-header.ui-corner-all {
+    background: #6A6C86;
+    border-color: #6A6C86;
+    border-radius: 0 !important;
+    color: #fff;
+    font-weight: 300;
+    text-shadow: 0 0 0 !important;
+}
+.painelUser .ui-layout-unit-content.ui-widget-content > form {
+    background: #6A6C86 !important;
+}
+.painelUser .ui-menu.ui-widget.ui-widget-content.ui-corner-all.ui-helper-clearfix {
+    background: #6A6C86;
+    border: transparent;
+    color: #fff;
+}
+.painelUser .ui-menu.ui-widget.ui-widget-content.ui-corner-all.ui-helper-clearfix a {
+    color: #fff;
+}
+.painelUser .ui-panelgrid-cell.ui-grid-col-12 {
+    background: transparent;
+    border: 0 !important;
+    padding: 0;
+    border-radius: 0 !important;
+}
+.painelUser .ui-panelgrid-cell.ui-grid-col-12 form {
+    border-radius:  0 !important;
+    border: 0 !important;
+    background: transparent !important;
+}
+
+.paneGridHorus .ui-panelgrid-content.ui-grid-responsive {
+    border: 0 none;
+    border-radius: 0 !important;
+}
+.paneGridHorus .ui-datatable-header.ui-widget-header.ui-corner-top {
+    background-color: #6A6C86;
+    background-image: none;
+    border-color: #6A6C86;
+    border-radius: 0;
+    color: #fff;
+    font-weight: 300;
+    text-shadow: 0 0 0 !important;
+}
+.painelUser .ui-paginator.ui-paginator-bottom.ui-widget-header.ui-corner-bottom {
+    background-color: #6A6C86;
+    background-image: none;
+    border-color: #6A6C86;
+}
+.painelUser .dataTableHorus table thead tr th {
+    background-color: #6A6C86;
+    background-image: none;
+    border-color: #6A6C86;
+    color: #fff;
+    font-weight: 300;
+    text-shadow: 0 0 0;
+}
+.painelUser .ui-menu.ui-widget.ui-widget-content.ui-corner-all.ui-helper-clearfix a:hover,
+.painelUser .ui-menu.ui-widget.ui-widget-content.ui-corner-all.ui-helper-clearfix a.ui-state-hover{
+    background: #2F303E;
+    border-radius: 0;
+    box-shadow: 0 0 0 0;
+}
+
+.painelUser .container-fluid {
+    margin-top: 20px;
+    padding: 0;
+}
+.painelUser .container-fluid.dadosUser{margin-bottom: 50px;}
+.painelUser .container-fluid.dadosUser .container {max-width: 100%;box-sizing: border-box;}
+.painelUser .container-fluid.dadosUser .container form#primCad{}
+.painelUser .container-fluid.dadosUser .container form#primCad fieldset{}
+.btn-block {
+    box-shadow: 0 0 0 0 !important;
+}
+.btn span.ui-button-text {
+    text-shadow: 0 0 0 !important;
+}
+.painelUser .dataTableHorus thead tr th {
+    box-shadow: 0 0 0 0 !important;
+}
+.painelUser .dataTableHorus tbody tr td {
+    text-align: center;
+}
+.painelUser .dataTableHorus tbody tr td input {
+    text-align: center;
+    box-shadow: 0 0 0 0 !important;
+}
+.painelUser .dataTableHorus tbody tr td button {
+    background-color: rgb(54, 56, 78);
+    background-image: none;
+    border: 0 none;
+    border-radius: 0;
+    color: #fff;
+    font-weight: 300;
+    text-shadow: 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+}
+.painelUser .dataTableHorus tbody tr td button span {
+    font-weight: 300;
+    text-shadow: 0 0 0 !important;
+}
+
+.ui-paginator-pages span.ui-corner-all.ui-paginator-page {
+    background: #232338;
+    border-color: #232338;
+    border-radius: 0;
+    box-shadow: 0 0 0 0;
+    color: #fff;
+    font-weight: 300;
+    text-shadow: 0 0 0;
+}
+
+
+.painelUser .dataTableHorus button.btn.btn-success,
+.painelUser .dataTableHorus tbody tr td button.btn.btn-success {
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+.painelUser .dataTableHorus tbody tr td button.btn.btn-success:hover {
+    background-color: #449d44;
+    border-color: #398439;
+}
+.painelUser .dataTableHorus tbody tr td button.btn.btn-danger {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+.painelUser .dataTableHorus tbody tr td button.btn.btn-danger:hover {
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
+.painelUser .dataTableHorus tbody tr td button.btn.btn-info {
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+.painelUser .dataTableHorus tbody tr td button.btn.btn-info:hover {
+    background-color: #31b0d5;
+    border-color: #269abc;
+}
+.painelUser .dataTableHorus .ui-datatable-header.ui-widget-header.ui-corner-top {
+    background: #040748;
+    border: 0;
+    border-radius: 0;
+    color: #fff;
+    font-weight: 300;
+    text-shadow: 0 0 0;
+}
+.painelUser form.fomHorus,.painelUser .ui-layout-unit-content.ui-widget-content > form.fomHorus {
+    background: transparent none repeat scroll 0 0 !important;
+}
+.painelUser form.fomHorus label,.painelUser .ui-layout-unit-content.ui-widget-content > form.fomHorus label {
+    font-weight: 300;
+    padding-right: 20px;
+}
+.painelUser form.fomHorus textarea,.painelUser .ui-layout-unit-content.ui-widget-content > form.fomHorus textarea {
+    box-shadow: 0 0 0 0;
+}
+.painelUser form.fomHorus table tbody tr,.painelUser .ui-layout-unit-content.ui-widget-content > form.fomHorus table tbody tr {
+    border-bottom: 4px solid transparent;
+}
+.fomHorus table tbody tr td button.btn.btn-success {
+    background: #5cb85c;
+    border-color: #4cae4c;
+    box-shadow: 0 0 0 0;
+    color: #fff;
+    font-weight: 300;
+}
+.fomHorus table tbody tr td button.btn.btn-success:hover {
+    background: #449d44;
+    border-color: #398439;
+}
+
+.olaUser p {
+    color: #fff;
+    padding: 10px 10px 0;
+}
+.olaUser button.btn.btn-danger:hover{
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
+.olaUser button.btn.btn-danger {
+    background: #d9534f;
+    border-color: #d43f3a;
+    box-shadow: 0 0 0 0;
+    color: #fff;
+    height: 30px;
+    padding: 5px !important;
+    width: 35px;
+}
+
+
+@media screen and (max-width:780px),(max-device-width:780px){
+    .ui-layout-container{width: 100% !important;}
+    .painelUser .menulateral + 
+    .ui-layout-unit.ui-widget.ui-widget-content.ui-corner-all.ui-layout-center.ui-layout-pane.ui-layout-pane-center{
+        width: calc(100% - 155px);
+        max-width: calc(100% - 155px);
+    }
+}
+@media screen and (max-width:500px),(max-device-width:500px){
+    .painelUser .menulateral .ui-layout-unit-content{
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+    }
+    .painelUser .menulateral {
+        width: 100% !important;
+        max-width: 100% !important;
+        float: none;
+        height: 190px  !important;
+        position: static !important;
+        padding: 0;
+    }
+    .painelUser .menulateral .ui-layout-unit-content.ui-widget-content{
+        height: 140px  !important;
+    }
+    .painelUser .menulateral + .ui-layout-unit.ui-widget.ui-widget-content.ui-corner-all.ui-layout-center.ui-layout-pane.ui-layout-pane-center{
+        width: 100% !important;
+        max-width: 98% !important;
+        position: relative !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        float: none !important;
+        clear: both;
+        left: 6px !important;
+        overflow: auto;
+    }
+}

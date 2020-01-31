@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Area do Administrador</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet library="awesome" name="css/font-awesome.css" />
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/bootstrap-min.css"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/style.css"/>
+        <script type="text/javascript" src="#{request.contextPath}/js/bootstrap.js"></script>
+    </h:head>
+    <h:body styleClass="painelUser" >
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <p:layout fullPage="true">
+                        <p:growl id="messages"/> 
+                        <p:ajaxStatus onstart="PF('statusDialog').show();" onsuccess="PF('statusDialog').hide();" />
+                        <p:dialog modal="true" widgetVar="statusDialog" draggable="false" closable="false">
+                            <p:graphicImage value="#{request.contextPath}/imagensSistema/carregando.gif"/>
+                        </p:dialog>
+
+                        <p:layoutUnit position="north" size="100" rendered="true" closable="false" collapsible="false">
+                            <h:form styleClass="olaUser">
+                                <h:panelGrid columns="2">
+                                    <p>OLA :#{controleUsuario.userLogado.nome}</p>
+                                    <p:commandButton styleClass="btn btn-danger" title="SAIR" icon="fa fa-times-circle" action="#{controleUsuario.logoutAdmin()}" />
+                                </h:panelGrid>
+                            </h:form>
+                        </p:layoutUnit>
+
+                        <p:layoutUnit position="west" size="150" header="Menu" 
+                                      styleClass="menulateral" 
+                                      resizable="true" closable="false" collapsible="false">
+                            <h:form id="formPag">                       
+                                <p:menu style="width: 127px;">
+                                    <p:menuitem value="Home" url="/paginasAdmin/venda_pendente_despacho.faces"  ajax="false"/>
+                                    <p:menuitem value="Produto" action="#{controleProdutos.paginaProduto()}" ajax="false"/>
+                                    <p:menuitem value="Marca" action="#{controleMarca.paginaMarca()}" ajax="false" process="@this"/>
+                                    <p:menuitem value="Categoria" action="#{controleCategoriaProduto.paginaCtg()}" ajax="false" process="@this"/>
+                                </p:menu>
+                            </h:form>
+                        </p:layoutUnit>
+                        <ui:insert name="centro">
+                            <p:layoutUnit position="center" header="HOME" resizable="true" closable="false" collapsible="false">
+
+                            </p:layoutUnit>
+                        </ui:insert>
+                    </p:layout>
+                </div>
+            </div>
+        </div>     
+    </h:body>
+</html>

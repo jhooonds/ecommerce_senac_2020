@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="centro">
+        <p:layoutUnit position="center" header="Cadastro de Marca" resizable="true" closable="false" collapsible="false">
+            <p:separator style="width: 98%; height: 0px; margin-top: 5px;" />             
+            <h:form prependId="false" id="fomMenu" > 
+                <p:menubar>  
+                    <p:menuitem value="Pesquisar"  icon="fa fa-search" actionListener="#{controleMarca.pesquiarMarcas()}" ajax="true" oncomplete="PF('dlgMarca').show();" update=":formGridMarca:gridMarca" />    
+                </p:menubar>   
+            </h:form>  
+            <p:separator style="width:98%; height: 0px; margin-top:10px;"/>
+            <ui:include src="includes/cadastro_alterar_marca.xhtml"/>
+        </p:layoutUnit>
+    </ui:define>
+</ui:composition>

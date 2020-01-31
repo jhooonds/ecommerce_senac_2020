@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ph="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        
+        <title>Erro 404</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/bootstrap-min.css"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/style.css"/>
+        <script type="text/javascript" src="#{request.contextPath}/js/bootstrap.js"></script>
+    </h:head>
+    
+    <h:body>
+        <ui:include src="../menu_principal.xhtml" />
+
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <p>
+                            Erro 404
+                            <br/>
+                            Página não encontrada!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <ui:include src="../footer.xhtml" />
+        
+    </h:body>
+</html>

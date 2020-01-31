@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="centro">
+        <p:layoutUnit position="center" header="Cadastro de produto" resizable="true" closable="false" collapsible="false">
+            <p:separator style="width: 98%; height: 0px; margin-top: 5px;" />             
+            <h:form prependId="false" id="fomMenu"> 
+                <p:menubar>  
+                    <p:menuitem value="Pesquisar" icon="fa fa-search" actionListener="#{controleProdutos.listarTodosProdutos()}" ajax="true" oncomplete="PF('dlgProd').show();" update=":formTabelaProd:gridProduto" />    
+                </p:menubar>   
+            </h:form>  
+            <p:separator style="width:98%; height: 0px; margin-top:10px;"/>
+            <h:panelGrid columns="2">
+                <h:form id="formProduto" styleClass="fomHorus produtos">
+                    <h:panelGrid columns="2">
+                        <p:outputLabel for="nomeProd" value="Nome :"/>
+                        <p:inputText id="nomeProd" value="#{controleProdutos.p.nome}"/>
+                        <p:outputLabel for="qtdProd" value="Quantidade :"/>
+                        <p:inputText id="qtdProd" value="#{controleProdutos.p.quantidade}"/>
+                        <p:outputLabel for="valorCompProd" value="Valor de Compra :"/>
+                        <p:inputText id="valorCompProd" value="#{controleProdutos.p.valorCompra}"/>
+                        <p:outputLabel for="valorVendaProd" value="Valor de Venda :"/>
+                        <p:inputText id="valorVendaProd" value="#{controleProdutos.p.valorVenda}"/>
+                        <p:outputLabel for="marcaProd" value="Marca do Produto :"/>
+                        <p:selectOneMenu id="marcaProd"  value="#{controleProdutos.m.codigo}">
+                            <f:selectItem itemValue="" itemLabel="Selecionar"/>
+                            <f:selectItems value="#{controleProdutos.comboboxMarcas}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel for="categoriaProd" value="Categoria do Produto :"/>
+                        <p:selectOneMenu id="categoriaProd"  value="#{controleProdutos.cp.codigo}">
+                            <f:selectItem itemValue="" itemLabel="Selecionar"/>
+                            <f:selectItems value="#{controleProdutos.comboboxCtgProd}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel for="ativoProd" value="Produto Ativo ?"/>
+                        <p:selectOneRadio id="ativoProd" value="#{controleProdutos.ativo}" required="true" requiredMessage="Marque um opção!!">
+                            <f:selectItem itemLabel="Sim" itemValue="sim"/>
+                            <f:selectItem itemLabel="Não" itemValue="nao"/>
+                        </p:selectOneRadio>
+                        <p:outputLabel for="dataCadProd" value="Data de cadastro do Produto :"/>
+                        <p:inputText id="dataCadProd" value="#{controleProdutos.p.dataCadastro}" disabled="true">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                        </p:inputText>
+                        <p:outputLabel for="descricaoProd" value="Descrição"/>
+                        <p:inputTextarea id="descricaoProd" value="#{controleProdutos.p.descricao}" cols="23" rows="5"/>
+                        <h:outputText/>
+                        <p:commandButton styleClass="btn btn-success" icon="fa fa-save" value="Salvar" action="#{controleProdutos.salvar()}" ajax="false" update=":messages"/>
+                    </h:panelGrid>
+                </h:form>
+                <h:form enctype="multipart/form-data">  
+                    <h:panelGrid columns="2" rendered="#{controleProdutos.p.codigo != 0}">
+                        <h:outputText value="Adicionar comprivante: "/>  
+                        <p:fileUpload fileUploadListener="#{controleProdutos.handleFileUploadAction}" auto="false"
+                                      mode="advanced" label="Procurar imagen" cancelLabel="Cancelar" update=":formGridProduto:gridProduto"/>
+                    </h:panelGrid>
+                </h:form>
+            </h:panelGrid>
+            <h:panelGrid  columns="2" rendered="#{controleProdutos.p.codigo != 0}">
+                <h:form id="formGridProduto">
+                    <p:dataTable id="gridProduto" value="#{controleProdutos.modelImgProd}" var="produtoGrid" 
+                                 paginator="true" rows="6"
+                                 paginatorPosition="bottom" 
+                                 styleClass="dataTableHorus"
+                                 reflow="true"
+                                 emptyMessage="Nenhum valor encontrado">
+                        <f:facet name="header">
+                            <h:outputText value="Listando imagens dos produtos(s)"/>
+                        </f:facet>
+                        <p:column width="200">
+                            <f:facet name="header">
+                                Produto
+                            </f:facet>
+                            <p:graphicImage  value="../imagensProdutos/#{produtoGrid.nome}" width="100" height="80" />
+                           
+                        </p:column>
+                        <p:column width="50">
+                            <p:commandButton styleClass="btn btn-danger" title="Excluir imagem" ajax="true" actionListener="#{controleProdutos.deletaImagenProduto()}"  icon="fa fa-trash-o" update="gridProduto"/>
+                        </p:column>
+                        <p:column width="50">
+                            <p:commandButton styleClass="btn btn-success" title="Escoha uma imagem que representara o produto nas pesquisas" icon="fa fa-check" ajax="true" actionListener="#{controleProdutos.adicionarImagemPrincipal()}" disabled="#{produtoGrid.principal}"  update="gridProduto"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </h:panelGrid>
+            <ui:include src="includes/tebela_lista_produtos.xhtml"/>           
+        </p:layoutUnit>
+    </ui:define>
+</ui:composition>

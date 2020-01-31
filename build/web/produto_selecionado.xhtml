@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Produto Selecionado #{controleProdutos.p.nome}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/bootstrap-min.css"/>
+        <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/style.css"/>
+        <script type="text/javascript" src="#{request.contextPath}/js/bootstrap.js"></script>
+        <h:outputStylesheet library="awesome" name="css/font-awesome.css" />
+    </h:head>
+    <h:body>
+        <ui:include src="menu_principal.xhtml" />
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <p:galleria 
+                            value="#{controleProdutos.p.fotos}"
+                            var="foto" 
+                            panelWidth="500" 
+                            panelHeight="300"
+                            showCaption="false">  
+                            <p:graphicImage
+                                value="imagensProdutos/#{foto.nome}"  
+                                width="500"
+                                height="300" />  
+                        </p:galleria>  
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="codigoProd">
+                            Cod.: #{controleProdutos.p.codigo}
+                        </div>
+
+                        <div class="nomeProd">
+                            ${controleProdutos.p.nome}
+                        </div>
+
+                        <div class="descricaoProd">
+                            <!--Descricao do produto-->
+                            #{controleProdutos.p.descricao}
+                        </div>
+
+                        <div class="precoProduto">
+                            R$ <h:outputText value="#{controleProdutos.p.valorVenda}" >
+                                <f:convertNumber pattern="#0.00"/>
+                            </h:outputText>
+                        </div>
+                        <h:form>
+                            <div class="addProd">
+                                <p:commandButton class="buttonProd btn btn-warning" value="Adicionar ao carrinho" ajax="true"
+                                                 actionListener="#{controleProdutos.adicionarProdutoCarrinho()}" 
+                                                 icon="fa fa-shopping-cart" update=":menuPrincipal:btnCarrinho"/>
+                            </div>
+                            <div class="addProd">
+                                <p:commandButton class="buttonProd btn btn-info" value="Comprar" icon="fa fa-credit-card"  ajax="true"
+                                                 actionListener="#{controleProdutos.adicionarProdutoCarrinho()}" 
+                                                 update=":menuPrincipal:btnCarrinho" oncomplete="javascript:window.location.href='#{controleVenda.redirecionaPaginaVenda()}'"/>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mb20"></div>
+        <ui:include src="footer.xhtml" />
+    </h:body>
+</html>

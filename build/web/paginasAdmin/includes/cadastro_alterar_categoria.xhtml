@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:panelGrid columns="1">
+        <h:form id="formCadCtg" styleClass="fomHorus categoria">
+            <h:panelGrid id="pcadCtg" columns="2">
+                <p:outputLabel for="nomeCtg" value="Nome : "/>
+                <p:inputText value="#{controleCategoriaProduto.cp.nome}" id="nomeCtg"/>
+                <p:outputLabel for="ativoCtg" value="Categoria Ativa ?"/>
+                <p:selectOneRadio id="ativoCtg" value="#{controleCategoriaProduto.cp.ativoString}" required="true" requiredMessage="Marque um opção!!">
+                    <f:selectItem itemLabel="Sim" itemValue="sim"/>
+                    <f:selectItem itemLabel="Não" itemValue="nao"/>
+                </p:selectOneRadio>
+                <p:outputLabel for="descricaoCtg" value="Descrição : "/>
+                <p:inputTextarea id="descricaoCtg" value="#{controleCategoriaProduto.cp.descricao}" rows="6" cols="23" />
+                <h:outputText/>
+                <p:commandButton styleClass="btn btn-success" icon="fa fa-save" value="salvar" actionListener="#{controleCategoriaProduto.salvar()}" ajax="true" update=":formGridCtg:gridCtg :messages"/>
+            </h:panelGrid> 
+        </h:form>
+    </h:panelGrid>
+    <p:dialog header="Lista de Categorias" widgetVar="dlgCtg" modal="true" appendTo="@(body)">
+        <h:form id="formGridCtg">
+            <h:panelGrid columns="1">
+                <p:dataTable id="gridCtg" value="#{controleCategoriaProduto.modelCategoriaProd}"
+                             paginatorPosition="bottom" 
+                             styleClass="dataTableHorus"
+                             reflow="true"
+                             var="ctg" paginator="true" rows="7" >
+                    <p:column width="100">
+                        <f:facet name="header">Codigo</f:facet>
+                            #{ctg.codigo}
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">Nome</f:facet>
+                            #{ctg.nome}
+                    </p:column>
+                    <p:column width="100">
+                        <f:facet name="header">Ativo</f:facet>
+                            #{ctg.ativoString}
+                    </p:column>
+                    <p:column width="100">
+                        <f:facet name="header">Editar</f:facet>
+                        <p:commandButton styleClass="btn btn-success" title="Editar categoria selecionada" icon="fa fa-edit" actionListener="#{controleCategoriaProduto.alteraCtg()}" ajax="false"  oncomplete="PF('dlgCtg').hide();"  update=":formCadCtg:pcadCtg"/>
+                    </p:column>
+                </p:dataTable>
+            </h:panelGrid>
+        </h:form>
+    </p:dialog>
+</ui:composition>

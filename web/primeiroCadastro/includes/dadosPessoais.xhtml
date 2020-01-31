@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"               
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:fieldset id="pessoa" legend="Dados Pessoais" styleClass="cadastro">
+        <p:panelGrid layout="grid" id="cadDadosPessaoas" columns="2">
+
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel for="nomeCli" value="Nome Completo : " styleClass="labelHorus"/>
+                    <p:inputText value="#{controleCliente.pessoa.nome}"
+                                 id="nomeCli" styleClass="form-control" />
+                </div>
+            </p:column>
+
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel for="cpfCli" value="CPF : " styleClass="labelHorus"/>
+                    <p:inputMask mask="999.999.999-99" value="#{controleCliente.pessoa.cpfCnpj}"
+                                 id="cpfCli" styleClass="form-control" />
+                </div>
+            </p:column>
+
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel for="sexoCli" value="Sexo : " styleClass="labelHorus"/>
+                    <p:selectOneRadio id="sexoCli" value="#{controleCliente.pessoa.sexo}" styleClass="form-control" >
+                        <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                        <f:selectItem itemLabel="Feminino" itemValue="F"/>
+                    </p:selectOneRadio>
+                </div>
+            </p:column>
+
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel value="Data de Nascimento : "
+                                   for="dataNascCli" 
+                                   styleClass="labelHorus"/>
+                    <p:calendar id="dataNascCli" 
+                                value="#{controleCliente.pessoa.dataNascimento}"
+                                pattern="dd-MM-yyyy" 
+                                mask="true"
+                                styleClass="form-control"/>
+                </div>
+            </p:column>
+
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel  styleClass="labelHorus" value="Tel :" for="ddTelCli" />
+                    <br/>
+                    <p:inputMask mask="99" value="#{controleCliente.pessoa.dddRes}" id="ddTelCli" size="1"/>
+                    <p:outputLabel value="-" for="telCli"/>
+                    <p:inputMask mask="99999999" value="#{controleCliente.pessoa.telRes}" id="telCli" size="6"/>
+                </div>
+            </p:column>
+
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel  styleClass="labelHorus" value="Cel :" for="ddCelCli" />
+                    <br/>
+                    <p:inputMask mask="99" value="#{controleCliente.pessoa.dddCel}" id="ddCelCli" size="1"/>
+                    <p:outputLabel value="-" for="celCli"/>
+                    <p:inputMask mask="99999999" value="#{controleCliente.pessoa.telCel}" id="celCli" size="6"/>
+                </div>
+            </p:column>
+
+            <p:column>
+                <div class="radio form-group">
+                    <p:outputLabel for="dataCadCli" styleClass="labelHorus" value="Data de cadastro :"/>
+                    <p:inputText id="dataCadCli" value="#{controleCliente.pessoa.dataCadastro}" styleClass="form-control" disabled="true">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>  
+                    </p:inputText>
+                </div>
+            </p:column>
+
+        </p:panelGrid>
+    </p:fieldset>
+</ui:composition>
